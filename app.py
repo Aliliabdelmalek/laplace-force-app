@@ -72,7 +72,7 @@ st.markdown("---")
 st.markdown(f"""
 <div style="text-align:center; background-color:#ff4b4b; color:white; padding:15px; border-radius:15px;">
     <h3 style="color:white !important; margin:0;">إعداد المبرمج المبدع: عبد المالك عليلي</h3>
-    <p style="margin:5px 0;">📍 ولاية المسيلة الأبية | الجزائر 🇩🇿</p>
+    <p style="margin:5px 0;">📍 ولاية المسيلة | الجزائر 🇩🇿</p>
     <p>📧 aliliabdou826@gmail.com</p>
 </div>
 """, unsafe_allow_html=True)
