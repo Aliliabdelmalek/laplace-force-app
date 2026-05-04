@@ -2,99 +2,104 @@ import streamlit as st
 import math
 
 # 1. إعدادات الصفحة
-st.set_page_config(page_title="موسوعة عبد المالك الفيزيائية", page_icon="⚛️", layout="centered")
+st.set_page_config(page_title="مختبر عبد المالك الفيزيائي", page_icon="⚛️", layout="centered")
 
-# 2. التنسيق الجمالي (Light Mode) المحسن
+# 2. إجبار التطبيق على الوضع الفاتح (Fix Dark Mode Visibility)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-    .stApp { background-color: #fcfcfc; font-family: 'Cairo', sans-serif; direction: rtl; }
-    .physics-card {
-        background-color: #ffffff; padding: 15px; border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06); margin-bottom: 15px;
-        border-right: 6px solid #2E7D32; color: #333;
+    
+    /* إجبار الخلفية على البياض والنص على السواد */
+    .stApp {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
     }
-    .law-box { background: #f1f8e9; padding: 8px; border-radius: 8px; border: 1px solid #c8e6c9; text-align: center; font-weight: bold; margin: 5px 0; }
-    .term-title { color: #1565C0; font-weight: bold; font-size: 1.1rem; }
-    h1 { color: #2E7D32 !important; text-align: center; font-weight: 900; }
+
+    /* تنسيق البطاقات لتبقى واضحة */
+    .physics-card {
+        background-color: #f8f9fa !important;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        margin-bottom: 15px;
+        border-right: 6px solid #2E7D32;
+        color: #000000 !important;
+    }
+
+    .law-box {
+        background: #e8f5e9 !important;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #c8e6c9;
+        text-align: center;
+        font-weight: bold;
+        color: #2E7D32 !important;
+        margin: 5px 0;
+    }
+
+    /* تصحيح ألوان النصوص في التبويبات */
+    .stTabs [data-baseweb="tab"] p {
+        color: #333333 !important;
+    }
+    
+    h1, h2, h3 { color: #2E7D32 !important; text-align: center; }
+    label { color: #000000 !important; font-weight: bold !important; }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1>🔬 مختبر المسيلة الشامل للفيزياء</h1>", unsafe_allow_html=True)
+st.markdown("<h1>🔬 مختبر المسيلة الشامل V19</h1>", unsafe_allow_html=True)
 
 tab_calc, tab_terms, tab_smart, tab_contact = st.tabs(["🔢 حاسبة لابلاص", "📚 قاموس المصطلحات", "🤖 المستنتج الذكي", "📧 تواصل معي"])
 
-# --- التبويبة الأولى: الحاسبة (مع حل مشكلة الزاوية) ---
+# --- التبويبة الأولى: الحاسبة ---
 with tab_calc:
+    st.markdown('<div class="physics-card">', unsafe_allow_html=True)
     st.subheader("🔢 حساب شدة قوة لابلاص")
-    I = st.number_input("شدة التيار I (A):", value=2.0)
-    L = st.number_input("طول الناقل L (m):", value=0.5)
-    B = st.number_input("شدة الحقل B (T):", value=0.1)
-    theta = st.number_input("الزاوية θ (بالدرجات):", 0, 180, 90)
-    
+    I = st.number_input("شدة التيار I (أمبير):", value=2.0)
+    L = st.number_input("طول الناقل L (متر):", value=0.5)
+    B = st.number_input("شدة الحقل B (تسلا):", value=0.1)
+    theta = st.number_input("الزاوية θ (درجة):", 0, 180, 90)
     F = I * L * B * math.sin(math.radians(theta))
-    st.success(f"النتيجة النهائية: F = {F:.4f} Newton")
+    st.markdown(f"<div class='law-box'>النتيجة: F = {F:.4f} Newton</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# --- التبويبة الثانية: 15 مصطلح وقانون (جديد) ---
+# --- التبويبة الثانية: 15 قانون ومصطلح ---
 with tab_terms:
-    st.markdown("## 📚 أهم 15 مصطلح وقانون فيزيائي")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        terms_1 = [
-            ("قوة لابلاص (F)", "F = I . L . B . sin(θ)"),
-            ("شدة الحقل (B)", "تقاس بوحدة التسلا (T)"),
-            ("التيار الكهربائي (I)", "تدفق الإلكترونات، يقاس بالأمبير (A)"),
-            ("الناقل المستقيم", "سلك يسمح بمرور التيار وتوليد حقل"),
-            ("النفاذية المغناطيسية", "قدرة الوسط على تمرير خطوط الحقل"),
-            ("المغناطيس الدائم", "جسم يملك قطبين (N) و (S) ثابتين"),
-            ("الوشيعة المسطحة", "ناقل ملفوف يولد حقل مغناطيسي مركز"),
-            ("قانون أوم", "U = R . I (العلاقة بين التوتر والتيار)")
-        ]
-        for title, law in terms_1:
-            st.markdown(f'<div class="physics-card"><span class="term-title">{title}</span><div class="law-box">{law}</div></div>', unsafe_allow_html=True)
-
-    with col2:
-        terms_2 = [
-            ("الحقل المغناطيسي الأرضي", "يحمي الأرض من الرياح الشمسية"),
-            ("الفعل المتبادل", "التأثير المتبادل بين المغناطيس والتيار"),
-            ("خطوط الحقل", "خطوط وهمية تخرج من N وتدخل في S"),
-            ("المحرض (Inductor)", "العنصر الذي يولد الحقل (المغناطيس)"),
-            ("المتحرض", "العنصر الذي يخضع للحقل (الوشيعة)"),
-            ("التيار المتناوب (AC)", "تيار يتغير اتجاهه وشدته بانتظام"),
-            ("التواتر (Frequency)", "عدد الدورات في الثانية، يقاس بالهرتز (Hz)"),
-            ("الاستطاعة الكهربائية", "P = U . I (تقاس بالواط W)")
-        ]
-        for title, law in terms_2:
-            st.markdown(f'<div class="physics-card"><span class="term-title">{title}</span><div class="law-box">{law}</div></div>', unsafe_allow_html=True)
+    st.markdown("## 📚 القاموس الفيزيائي المعتمد")
+    c1, c2 = st.columns(2)
+    t_list = [
+        ("قوة لابلاص", "F = I.L.B.sin(θ)"), ("شدة الحقل", "تقاس بالتسلا (T)"),
+        ("التيار (I)", "تدفق شحنات (A)"), ("قانون أوم", "U = R . I"),
+        ("الوشيعة", "ناقل ملفوف حلزونياً"), ("المغناطيس", "له قطبان N و S"),
+        ("التواتر (f)", "يحسب بالهرتز (Hz)"), ("الدور (T)", "T = 1/f"),
+        ("الاستطاعة", "P = U . I (W)"), ("خطوط الحقل", "تتجه من N إلى S"),
+        ("النفاذية", "قدرة الوسط المغناطيسية"), ("المحرض", "مصدر الحقل"),
+        ("المتحرض", "الذي يتولد فيه التيار"), ("تيار AC", "تيار متغير الجهة"),
+        ("الفعل المتبادل", "تأثير مغناطيس على تيار")
+    ]
+    for i, (name, law) in enumerate(t_list):
+        target_col = c1 if i < 8 else c2
+        target_col.markdown(f'<div class="physics-card"><b>{name}</b><div class="law-box">{law}</div></div>', unsafe_allow_html=True)
 
 # --- التبويبة الثالثة: المستنتج الذكي ---
 with tab_smart:
-    st.subheader("🤖 تحديد جهة القوة")
-    i_dir = st.selectbox("جهة التيار:", ["للأعلى ⬆️", "للأسفل ⬇️", "لليمين ➡️", "لليسار ⬅️"])
-    b_dir = st.selectbox("جهة الحقل:", ["نحو الناظر (نقطة) 🔵", "بعيداً عن الناظر (كروس) ✖️"])
-    
-    res_icon, res_text = "🔘", "انتظار المعطيات"
-    if "للأعلى" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬅️", "نحو اليسار"
-    elif "للأعلى" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "➡️", "نحو اليمين"
-    elif "لليمين" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬆️", "نحو الأعلى"
-    elif "لليمين" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "⬇️", "نحو الأسفل"
-
-    st.markdown(f'<div style="font-size:60px; text-align:center;">{res_icon}<br><p style="font-size:20px;">الجهة: {res_text}</p></div>', unsafe_allow_html=True)
+    st.subheader("🤖 مستنتج جهة القوة")
+    i_d = st.selectbox("جهة التيار:", ["للأعلى ⬆️", "للأسفل ⬇️", "لليمين ➡️", "لليسار ⬅️"])
+    b_d = st.selectbox("جهة الحقل:", ["نحو الناظر (نقطة) 🔵", "بعيداً عن الناظر (✖️)"])
+    st.info("استخدم قاعدة اليد اليمنى للتأكد")
 
 # --- التبويبة الرابعة: التواصل ---
 with tab_contact:
     st.markdown("""
-    <div class="physics-card" style="text-align:center; border-right-color: #1565C0;">
-        <h2>📧 تواصل مع المبرمج</h2>
-        <p>عبد المالك عليلي - ولاية المسيلة</p>
-        <p style="font-size: 20px; color: #1565C0;"><b>aliliabdou826@gmail.com</b></p>
-        <p>نرحب بطلبات تعديل النسخ الخاصة</p>
+    <div class="physics-card" style="text-align:center;">
+        <h3>📧 مركز الدعم الفني</h3>
+        <p>المبرمج: <b>عبد المالك عليلي</b></p>
+        <p style="color:#1565C0;">aliliabdou826@gmail.com</p>
+        <p>📍 ولاية المسيلة | الجزائر</p>
     </div>
     """, unsafe_allow_html=True)
 
-# 4. التذييل
 st.markdown("---")
-st.markdown("<p style='text-align:center;'>صنع بكل فخر بواسطة <b>عبد المالك عليلي</b> | الجزائر 🇩🇿</p>", unsafe_allow_html=True)
-st.balloons()
+st.markdown("<p style='text-align:center;'>تم الإصلاح ليعمل بوضوح في كافة الأوضاع 🇩🇿</p>", unsafe_allow_html=True)
