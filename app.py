@@ -78,7 +78,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.balloons()
-[04-05-2026 15:23] Abdou Trader: import streamlit as st
+import streamlit as st
 
 # 1. إعدادات الصفحة
 st.set_page_config(page_title="مختبر المسيلة للفيزياء", page_icon="🔬", layout="centered")
