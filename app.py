@@ -2,58 +2,32 @@ import streamlit as st
 import math
 
 # 1. إعدادات الصفحة
-st.set_page_config(page_title="مختبر عبد المالك الفيزيائي", page_icon="⚛️", layout="centered")
+st.set_page_config(page_title="المختبر الفيزيائي الرقمي", page_icon="🚀", layout="centered")
 
-# 2. إجبار التطبيق على الوضع الفاتح (Fix Dark Mode Visibility)
+# 2. إجبار الوضع الفاتح (ضد الوضع المظلم)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-    
-    /* إجبار الخلفية على البياض والنص على السواد */
-    .stApp {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
-    }
-
-    /* تنسيق البطاقات لتبقى واضحة */
+    .stApp { background-color: #ffffff !important; color: #000000 !important; font-family: 'Cairo', sans-serif; direction: rtl; }
     .physics-card {
-        background-color: #f8f9fa !important;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        margin-bottom: 15px;
-        border-right: 6px solid #2E7D32;
-        color: #000000 !important;
+        background-color: #f8f9fa !important; padding: 15px; border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px;
+        border-right: 6px solid #2E7D32; color: #000000 !important;
     }
-
     .law-box {
-        background: #e8f5e9 !important;
-        padding: 8px;
-        border-radius: 8px;
-        border: 1px solid #c8e6c9;
-        text-align: center;
-        font-weight: bold;
-        color: #2E7D32 !important;
-        margin: 5px 0;
+        background: #e8f5e9 !important; padding: 8px; border-radius: 8px;
+        text-align: center; font-weight: bold; color: #2E7D32 !important;
     }
-
-    /* تصحيح ألوان النصوص في التبويبات */
-    .stTabs [data-baseweb="tab"] p {
-        color: #333333 !important;
-    }
-    
-    h1, h2, h3 { color: #2E7D32 !important; text-align: center; }
+    h1 { color: #2E7D32 !important; text-align: center; font-weight: 900; }
     label { color: #000000 !important; font-weight: bold !important; }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1>🔬 مختبر المسيلة الشامل V19</h1>", unsafe_allow_html=True)
+# العودة للاسم الأصلي
+st.markdown("<h1>🚀 المختبر الفيزيائي الرقمي</h1>", unsafe_allow_html=True)
 
 tab_calc, tab_terms, tab_smart, tab_contact = st.tabs(["🔢 حاسبة لابلاص", "📚 قاموس المصطلحات", "🤖 المستنتج الذكي", "📧 تواصل معي"])
 
-# --- التبويبة الأولى: الحاسبة ---
 with tab_calc:
     st.markdown('<div class="physics-card">', unsafe_allow_html=True)
     st.subheader("🔢 حساب شدة قوة لابلاص")
@@ -65,7 +39,6 @@ with tab_calc:
     st.markdown(f"<div class='law-box'>النتيجة: F = {F:.4f} Newton</div>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- التبويبة الثانية: 15 قانون ومصطلح ---
 with tab_terms:
     st.markdown("## 📚 القاموس الفيزيائي المعتمد")
     c1, c2 = st.columns(2)
@@ -83,18 +56,16 @@ with tab_terms:
         target_col = c1 if i < 8 else c2
         target_col.markdown(f'<div class="physics-card"><b>{name}</b><div class="law-box">{law}</div></div>', unsafe_allow_html=True)
 
-# --- التبويبة الثالثة: المستنتج الذكي ---
 with tab_smart:
     st.subheader("🤖 مستنتج جهة القوة")
     i_d = st.selectbox("جهة التيار:", ["للأعلى ⬆️", "للأسفل ⬇️", "لليمين ➡️", "لليسار ⬅️"])
-    b_d = st.selectbox("جهة الحقل:", ["نحو الناظر (نقطة) 🔵", "بعيداً عن الناظر (✖️)"])
+    b_d = st.selectbox("جهة الحقل (السبابة):", ["نحو الناظر (نقطة) 🔵", "بعيداً عن الناظر (✖️)"])
     st.info("استخدم قاعدة اليد اليمنى للتأكد")
 
-# --- التبويبة الرابعة: التواصل ---
 with tab_contact:
     st.markdown("""
     <div class="physics-card" style="text-align:center;">
-        <h3>📧 مركز الدعم الفني</h3>
+        <h3>📧 مركز التواصل المباشر</h3>
         <p>المبرمج: <b>عبد المالك عليلي</b></p>
         <p style="color:#1565C0;">aliliabdou826@gmail.com</p>
         <p>📍 ولاية المسيلة | الجزائر</p>
@@ -102,4 +73,4 @@ with tab_contact:
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown("<p style='text-align:center;'>تم الإصلاح ليعمل بوضوح في كافة الأوضاع 🇩🇿</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;'>حقوق البرمجية محفوظة للمبدع عبد المالك عليلي 🇩🇿</p>", unsafe_allow_html=True)
