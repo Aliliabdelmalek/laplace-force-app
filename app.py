@@ -1,60 +1,80 @@
 import streamlit as st
-import pandas as pd
-import math
-from datetime import datetime
 
-# إعدادات الصفحة الأساسية
-st.set_page_config(page_title="مختبر عليلي", layout="centered")
+# 1. إعدادات الصفحة الأساسية
+st.set_page_config(page_title="موسوعة لابلاص الفيزيائية", page_icon="🔬", layout="centered")
 
-# تنسيق CSS مبسط جداً لضمان عدم التداخل على الهاتف
+# 2. هندسة المظهر الفاتح والألوان المنعشة (Light Mode)
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-    html, body, [class*="css"] { font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: white !important; }
-    .stApp { background-color: #0e1117; }
-    h1 { color: #00d4ff !important; text-align: center; font-size: 1.5rem !important; }
-    .main-box { background-color: #161b22; padding: 15px; border-radius: 10px; border: 1px solid #30363d; margin-bottom: 10px; }
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    
+    /* تنسيق الخلفية والنصوص */
+    .stApp {
+        background-color: #f0f2f6; /* لون فاتح مريح */
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+    }
+    
+    /* تصميم البطاقات الملونة */
+    .physics-card {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 20px;
+        border-left: 10px solid #ff4b4b;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        color: #31333f;
+    }
+    
+    h1 { color: #ff4b4b !important; text-align: center; font-weight: 900; }
+    h2 { color: #1f77b4 !important; }
+    
+    /* تأثيرات كرتونية */
+    .emoji-art { font-size: 50px; text-align: center; }
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown("<h1>🔬 مختبر عليلي الفيزيائي</h1>", unsafe_allow_html=True)
-st.write(f"<p style='text-align:center;'>المبرمج: عبد المالك عليلي | {datetime.now().strftime('%Y-%m-%d')}</p>", unsafe_allow_html=True)
+# 3. الواجهة الرسومية (أينشتاين والذرة)
+st.markdown("<h1>⚛️ موسوعة القوى الفيزيائية</h1>", unsafe_allow_html=True)
 
-# القسم الرئيسي للحسابات
-st.markdown('<div class="main-box">', unsafe_allow_html=True)
-st.subheader("🎯 حساب قوة لابلاص")
-
-I = st.number_input("التيار (I) بالأمبير:", value=2.0)
-L = st.number_input("الطول (L) بالمتر:", value=0.5)
-B = st.number_input("الحقل (B) بالتسلا:", value=0.1)
-theta = st.slider("الزاوية (θ):", 0, 180, 90)
-
-# معادلة الحساب
-force = I * L * B * math.sin(math.radians(theta))
-
-st.markdown(f"""
-    <div style='background: #00d4ff; padding: 10px; border-radius: 5px; text-align: center; margin-top: 10px;'>
-        <h2 style='color: black !important; margin: 0;'>F = {force:.4f} N</h2>
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    # رسومات فيزيائية كرتونية
+    st.markdown("""
+    <div style="text-align:center;">
+        <span style="font-size:70px;">👨‍🔬</span><br>
+        <p style="color:#31333f; font-weight:bold;">"الخيال أهم من المعرفة" - ألبرت أينشتاين</p>
     </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("---")
+
+# 4. قسم قوة لابلاص (شرح فخيم بدون حسابات)
+st.markdown("""
+<div class="physics-card">
+    <h2>🎯 ما هي قوة لابلاص؟</h2>
+    <p>هي تلك القوة السحرية التي تنشأ عندما يمر تيار كهربائي داخل حقل مغناطيسي. تخيل السلك كأنه يقفز هارباً من المغناطيس!</p>
+    <div style="text-align:center; font-size:40px;">🧲 ⚡ ➡️ 🏃</div>
+</div>
 """, unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
 
-# اختبار بسيط
-st.markdown('<div class="main-box">', unsafe_allow_html=True)
-st.subheader("🧠 اختبار سريع")
-q = st.radio("إذا كانت الزاوية 0، القوة تكون:", ["معدومة", "أعظمية"])
-if st.button("تحقق من الإجابة"):
-    if q == "معدومة":
-        st.success("أحسنت! إجابة صحيحة")
-        st.balloons()
-    else:
-        st.error("حاول مرة أخرى")
-st.markdown('</div>', unsafe_allow_html=True)
+# 5. معلومات الذرة الكرتونية
+st.markdown("""
+<div class="physics-card" style="border-left-color: #1f77b4;">
+    <h2>⚛️ في قلب المادة</h2>
+    <p>تتكون الذرة من بروتونات ونيوترونات يحيط بها إلكترونات سريعة جداً. هذه الإلكترونات هي المسؤولة عن التيار الذي يولد لنا قوة لابلاص!</p>
+    <div class="emoji-art">🌀✨</div>
+</div>
+""", unsafe_allow_html=True)
 
-# التواصل
+# 6. التوقيع المسيلي الفخور
+st.markdown("---")
 st.markdown(f"""
-    <div style='text-align: center; padding: 10px;'>
-        <p>للتواصل: <a href='mailto:aliliabdou826@gmail.com' style='color: #00d4ff;'>aliliabdou826@gmail.com</a></p>
-        <p>🇩🇿 ولاية سطيف | 2026</p>
-    </div>
+<div style="text-align:center; background-color:#ff4b4b; color:white; padding:15px; border-radius:15px;">
+    <h3 style="color:white !important; margin:0;">إعداد المبرمج المبدع: عبد المالك عليلي</h3>
+    <p style="margin:5px 0;">📍 ولاية المسيلة الأبية | الجزائر 🇩🇿</p>
+    <p>📧 aliliabdou826@gmail.com</p>
+</div>
 """, unsafe_allow_html=True)
+
+st.balloons()
