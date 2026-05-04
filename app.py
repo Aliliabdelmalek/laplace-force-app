@@ -1,4 +1,4 @@
-[04-05-2026 16:23] Abdou Trader: import streamlit as st
+import streamlit as st
 import math
 
 # 1. إعدادات الصفحة الأساسية بالاسم الذي تفضله
@@ -96,7 +96,7 @@ with tab_smart:
     # خوارزمية النتيجة
     res_icon, res_text = "🔘", "بانتظار المعطيات"
     if "للأعلى" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬅️", "نحو اليسار"
-[04-05-2026 16:23] Abdou Trader: elif "للأعلى" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "➡️", "نحو اليمين"
+    elif "للأعلى" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "➡️", "نحو اليمين"
     elif "لليمين" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬆️", "نحو الأعلى"
     elif "لليمين" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "⬇️", "نحو الأسفل"
 
