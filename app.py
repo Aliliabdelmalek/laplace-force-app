@@ -78,8 +78,8 @@ with tab_smart_vector:
     elif "لليمين" in dir_i and "نحو الناظر" in dir_b:
         st.markdown('<div class="vector-result">⬇️ (نحو الأسفل)</div>', unsafe_allow_html=True)
     else:
-        st.markdown('<div class="vector-result">🔘 (تغير الوضعية للاستنتاج)</div>', unsafe_allow_html=True)
- st.info("ملاحظة: هذا المستنتج يعتمد خوارزمية قاعدة اليد اليمنى لتمثيل الحركة ميكانيكياً.")
+st.markdown('<div class="vector-result">🔘 (تغير الوضعية للاستنتاج)</div>', unsafe_allow_html=True)
+st.info("ملاحظة: هذا المستنتج يعتمد خوارزمية قاعدة اليد اليمنى لتمثيل الحركة ميكانيكياً.")
 
 # 5. التوقيع
 st.markdown("---")
