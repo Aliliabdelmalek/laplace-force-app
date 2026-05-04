@@ -77,7 +77,7 @@ with tab_smart:
     
     res_icon, res_text = "🔘", "انتظار المعطيات"
     if "للأعلى" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬅️", "نحو اليسار"
-[04-05-2026 15:56] Abdou Trader: elif "للأعلى" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "➡️", "نحو اليمين"
+    elif "للأعلى" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "➡️", "نحو اليمين"
     elif "لليمين" in i_dir and "بعيداً" in b_dir: res_icon, res_text = "⬆️", "نحو الأعلى"
     elif "لليمين" in i_dir and "نحو الناظر" in b_dir: res_icon, res_text = "⬇️", "نحو الأسفل"
 
