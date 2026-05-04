@@ -2,127 +2,91 @@ import streamlit as st
 import math
 
 # 1. إعدادات الصفحة
-st.set_page_config(page_title="مختبر عبد المالك الفيزيائي", page_icon="🔬", layout="centered")
+st.set_page_config(page_title="مختبر المسيلة الذكي", page_icon="🔬", layout="centered")
 
-# 2. تنسيق الواجهة الفاتحة (Light Theme) بنفس منهجيتنا الأخيرة
+# 2. التنسيق الجمالي (Light Mode)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-    
-    .stApp {
-        background-color: #fcfcfc;
-        font-family: 'Cairo', sans-serif;
-        direction: rtl;
-    }
-    
-    /* تنسيق البطاقات التعليمية */
+    .stApp { background-color: #fcfcfc; font-family: 'Cairo', sans-serif; direction: rtl; }
     .physics-card {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        margin-bottom: 20px;
-        border-right: 8px solid #2E7D32;
-        color: #333;
+        background-color: #ffffff; padding: 20px; border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 20px;
+        border-right: 8px solid #2E7D32; color: #333;
     }
-    
-    /* تنسيق التبويبات (Tabs) */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        justify-content: center;
-    }
-    .stTabs [data-baseweb="tab"] {
-        background-color: #f0f2f6;
-        border-radius: 10px 10px 0 0;
-        padding: 10px 20px;
-        color: #333 !important;
-        font-weight: bold;
-    }
-    .stTabs [aria-selected="true"] {
-        background-color: #2E7D32 !important;
-        color: white !important;
-    }
-
-    h1 { color: #2E7D32 !important; text-align: center; font-weight: 900; font-size: 2rem !important; }
-    h2 { color: #1565C0 !important; font-size: 1.3rem !important; }
-    .highlight { color: #d32f2f; font-weight: bold; }
+    .stTabs [data-baseweb="tab"] { font-weight: bold; padding: 10px 20px; }
+    h1 { color: #2E7D32 !important; text-align: center; font-weight: 900; }
+    h2 { color: #1565C0 !important; }
+    .vector-result { font-size: 50px; text-align: center; background: #e3f2fd; border-radius: 15px; padding: 10px; border: 2px dashed #1565C0; }
     </style>
     """, unsafe_allow_html=True)
 
-# 3. رأس الصفحة (العالم أينشتاين والذرة)
-st.markdown("<h1>🔬 موسوعة قوة لابلاص الرقمية</h1>", unsafe_allow_html=True)
+# 3. العنوان
+st.markdown("<h1>🔬 مختبر عبد المالك عليلي للفيزياء</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;'>📍 ولاية المسيلة | خبير البرمجيات التعليمية</p>", unsafe_allow_html=True)
 
-st.markdown("""
-<div style="text-align:center; margin-bottom: 20px;">
-    <span style="font-size:60px;">👨‍🔬</span> <span style="font-size:40px;">⚛️</span>
-    <p style="color:#666;">بإشراف المبرمج: <b>عبد المالك عليلي</b> (المسيلة)</p>
-</div>
-""", unsafe_allow_html=True)
+tab_theory, tab_calc, tab_smart_vector = st.tabs(["💡 قوانين المغناطيس", "🔢 حاسبة الشدة", "🤖 المستنتج الذكي"])
 
-# 4. نظام التبويبات المنظم
-tab_theory, tab_calc, tab_direction = st.tabs(["💡 عن القوة", "🔢 حاسبة القوة", "🖐️ جهة القوة"])
-
-# --- التبويبة الأولى: شرح فيزيائي كرتوني ---
+# --- التبويبة الأولى: قوانين المغناطيس والرسومات ---
 with tab_theory:
     st.markdown("""
     <div class="physics-card">
-        <h2>👨‍🏫 ما هي قوة لابلاص؟</h2>
-        <p>هي القوة التي يمارسها حقل مغناطيسي على سلك يمر به تيار كهربائي. تخيل أن الكهرباء والمغناطيس يتحدان لتحريك الأشياء!</p>
-        <div style="text-align:center; font-size:50px;">🧲 + ⚡ = 🏃</div>
+        <h2>🧲 القوانين الأساسية للمغناطيس</h2>
+        <p><b>1. قانون الحقل المغناطيسي (B):</b> يتولد حول الناقل المستقيم ويعطى بالعلاقة:</p>
+        <p style="text-align:center; background:#f0f2f6; padding:10px; border-radius:10px;"><b>B = (2 × 10⁻⁷ × I) / d</b></p>
+        <p><b>2. تدفق الحقل (Φ):</b> يعبر عن عدد خطوط الحقل التي تخترق سطحاً ما:</p>
+        <p style="text-align:center; background:#f0f2f6; padding:10px; border-radius:10px;"><b>Φ = B × S × cos(θ)</b></p>
     </div>
     <div class="physics-card" style="border-right-color: #FF9800;">
-        <h2>⚛️ سر الذرة</h2>
-        <p>الإلكترونات الصغيرة داخل السلك هي التي تخلق هذا السحر الفيزيائي عند حركتها.</p>
-        <div style="text-align:center; font-size:40px;">🌀✨</div>
+        <h2>🎨 توضيح كرتوني للمغناطيس</h2>
+        <p>تخرج خطوط الحقل دائماً من القطب الشمالي (N) وتدخل في القطب الجنوبي (S).</p>
+        <div style="text-align:center; font-size:60px;">🧲</div>
+        <p style="text-align:center;">🔴 (N) >>>>>>>> 🔵 (S)</p>
     </div>
     """, unsafe_allow_html=True)
 
-# --- التبويبة الثانية: حاسبة قوة لابلاص (إعادة الحسابات) ---
+# --- التبويبة الثانية: حاسبة الشدة ---
 with tab_calc:
-    st.markdown('<div class="physics-card" style="border-right-color: #1565C0;">', unsafe_allow_html=True)
-    st.markdown("<h2>🔢 استنتاج شدة القوة</h2>", unsafe_allow_html=True)
+    st.markdown("## 🔢 حساب شدة قوة لابلاص")
+    I_val = st.number_input("التيار I (A):", value=2.0)
+    L_val = st.number_input("الطول L (m):", value=0.5)
+    B_val = st.number_input("الحقل B (T):", value=0.1)
+    angle = st.slider("الزاوية θ:", 0, 180, 90)
     
-    # مدخلات الحساب
-    I = st.number_input("شدة التيار I (أمبير):", value=2.0)
-    L = st.number_input("طول السلك L (متر):", value=0.5)
-    B = st.number_input("الحقل المغناطيسي B (تسلا):", value=0.1)
-    theta = st.slider("الزاوية (درجة):", 0, 180, 90)
-    
-    # عملية الحساب
-    force = I * L * B * math.sin(math.radians(theta))
-    
-    # عرض النتيجة بشكل مبهج
-    st.markdown(f"""
-    <div style='background: #e3f2fd; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #1565C0;'>
-        <p style='color: #1565C0; margin:0;'>الشدة الناتجة F هي:</p>
-        <h2 style='color: #d32f2f !important; font-size: 30px !important; margin: 5px 0;'>{force:.4f} Newton</h2>
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    res = I_val * L_val * B_val * math.sin(math.radians(angle))
+    st.success(f"الشدة المستنتجة: {res:.4f} نيوتن")
 
-# --- التبويبة الثالثة: استنتاج جهة القوة ---
-with tab_direction:
-    st.markdown("""
-[04-05-2026 15:31] Abdou Trader: <div class="physics-card" style="border-right-color: #E91E63;">
-        <h2>👋 قاعدة اليد اليمنى</h2>
-        <p>استخدم أصابع يدك اليمنى لتحديد جهة الحركة:</p>
-        <ul>
-            <li>🚩 <b>الإبهام:</b> يشير إلى جهة التيار الكهربائي.</li>
-            <li>🧲 <b>السبابة:</b> تشير إلى جهة الحقل المغناطيسي.</li>
-            <li>🏹 <b>الوسطى:</b> تشير إلى جهة القوة الناتجة.</li>
-        </ul>
-        <div style="text-align:center; font-size:50px;">🖐️ 📐 ✨</div>
-    </div>
-    """, unsafe_allow_html=True)
+# --- التبويبة الثالثة: المستنتج الذكي للجهة ---
+with tab_smart_vector:
+    st.markdown("## 🤖 المستنتج الذكي لجهة القوة")
+    st.write("اختر أوضاع اليد اليمنى وسأخبرك بجهة السهم:")
+    
+    col_i, col_b = st.columns(2)
+    with col_i:
+        dir_i = st.selectbox("جهة التيار (الإبهام):", ["للأعلى ⬆️", "للأسفل ⬇️", "لليمين ➡️", "لليسار ⬅️"])
+    with col_b:
+        dir_b = st.selectbox("جهة الحقل (السبابة):", ["نحو الناظر 🔵", "بعيداً عن الناظر ✖️"])
 
-# 5. التذييل المسيلي الأنيق
+    # منطق المستنتج الذكي (تبسيط لقاعدة اليد اليمنى)
+    st.write("### النتيجة المتوقعة لجهة القوة (F):")
+    if "للأعلى" in dir_i and "بعيداً" in dir_b:
+        st.markdown('<div class="vector-result">⬅️ (نحو اليسار)</div>', unsafe_allow_html=True)
+    elif "للأعلى" in dir_i and "نحو الناظر" in dir_b:
+        st.markdown('<div class="vector-result">➡️ (نحو اليمين)</div>', unsafe_allow_html=True)
+    elif "لليمين" in dir_i and "بعيداً" in dir_b:
+        st.markdown('<div class="vector-result">⬆️ (نحو الأعلى)</div>', unsafe_allow_html=True)
+    elif "لليمين" in dir_i and "نحو الناظر" in dir_b:
+        st.markdown('<div class="vector-result">⬇️ (نحو الأسفل)</div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<div class="vector-result">🔘 (تغير الوضعية للاستنتاج)</div>', unsafe_allow_html=True)
+ st.info("ملاحظة: هذا المستنتج يعتمد خوارزمية قاعدة اليد اليمنى لتمثيل الحركة ميكانيكياً.")
+
+# 5. التوقيع
 st.markdown("---")
 st.markdown(f"""
-<div style="text-align:center; background: linear-gradient(to right, #1b5e20, #2E7D32); color:white; padding:20px; border-radius:15px;">
-    <h3 style="color:white !important; margin:0;">تم التطوير بكل فخر في ولاية المسيلة 🇩🇿</h3>
-    <p style="margin:5px 0;">المبرمج: <b>عبد المالك عليلي</b></p>
-    <p style="font-size:12px;">مختبر الفيزياء الذكي | 2026</p>
+<div style="text-align:center; background: #2E7D32; color:white; padding:15px; border-radius:15px;">
+    <h3 style="color:white !important; margin:0;">إبداع المبرمج عبد المالك عليلي 🇩🇿</h3>
+    <p>ولاية المسيلة | 2026</p>
 </div>
 """, unsafe_allow_html=True)
-
 st.balloons()
