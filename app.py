@@ -97,7 +97,7 @@ with tab_home:
     يمكنك استخدام التبويبات أعلاه للتنقل بين أجزاء البرنامج.
     """)
     st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lorentz_force_on_a_current_carrying_wire.svg/600px-Lorentz_force_on_a_current_carrying_wire.svg.png", caption="توضيح بصري لجهة قوة لابلاص وقاعدة اليد اليمنى")
-[04-05-2026 14:55] Abdou Trader: # --- القسم الثاني: المحاكي والحسابات ---
+ # --- القسم الثاني: المحاكي والحسابات ---
 with tab_calc:
     st.subheader("⚙️ محرك المحاكاة الفيزيائية")
     col_input, col_viz = st.columns([1, 1.5])
