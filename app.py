@@ -119,7 +119,7 @@ with tab_direction:
 st.markdown("---")
 st.markdown(f"""
 <div style="text-align:center; background: linear-gradient(to right, #1b5e20, #2E7D32); color:white; padding:20px; border-radius:15px;">
-    <h3 style="color:white !important; margin:0;">تم التطوير بكل فخر في ولاية المسيلة الأبية 🇩🇿</h3>
+    <h3 style="color:white !important; margin:0;">تم التطوير بكل فخر في ولاية المسيلة 🇩🇿</h3>
     <p style="margin:5px 0;">المبرمج: <b>عبد المالك عليلي</b></p>
     <p style="font-size:12px;">مختبر الفيزياء الذكي | 2026</p>
 </div>
